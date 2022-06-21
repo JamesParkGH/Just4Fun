@@ -7,10 +7,13 @@ from subprocess import call
 def open_gallery_win():
     gallery_win = Tk()
     gallery_win.title('Gallery Window')
-    gallery_win.geometry("800x600")
+    gallery_win.geometry("800x500")
     gallery_win.resizable(0, 0)
 
-    path = "Python_Gallery/*.*"
+    panel = tk.Label(gallery_win)
+    panel.pack()
+
+    path = "images_to_show/*.*"
     images = glob.glob(path)
 
     list1 = []
@@ -53,12 +56,17 @@ def open_gallery_win():
         resized_img = img.resize((640, 360))
         img = ImageTk.PhotoImage(resized_img)
 
+        panel.img = img
+        panel['image'] = img
+
     def previous_pic(counter):
         ab = list1[counter]
         img = Image.open(ab)
         resized_img = img.resize((660, 440))
         img = ImageTk.PhotoImage(resized_img)
 
+        panel.img = img
+        panel['image'] = img
 
 
     def return_menu():
